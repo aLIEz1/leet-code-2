@@ -1,3 +1,5 @@
+package com.github;
+
 /**
  * 二叉树定义
  *
@@ -5,9 +7,9 @@
  * @date 2021/7/31 1:04
  */
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
 
     public TreeNode() {
     }
