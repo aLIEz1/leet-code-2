@@ -1,4 +1,4 @@
-package com.github;
+package com.github.doublepointer.slidingwindow;
 
 /**
  * 长度最小的子数组

@@ -1,4 +1,4 @@
-package com.github;
+package com.github.doublepointer;
 
 /**
  * 移除元素

@@ -1,4 +1,4 @@
-package com.github;
+package com.github.doublepointer;
 
 import java.util.Arrays;
 
