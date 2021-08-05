@@ -8,46 +8,47 @@ package com.github;
  */
 public class S0207IntersectionOfTwoLinkedListsLccI {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode curA = headA;
-        ListNode curB = headB;
-        int lenA = 0, lenB = 0;
-        // 求链表A的长度
-        while (curA != null) {
-            lenA++;
-            curA = curA.next;
+        ListNode a = headA;
+        ListNode b = headB;
+        int sizeA = 0;
+        int sizeB = 0;
+        ListNode cur = a;
+        while (cur != null) {
+            sizeA++;
+            cur = cur.next;
         }
-        // 求链表B的长度
-        while (curB != null) {
-            lenB++;
-            curB = curB.next;
+        cur = b;
+        while (cur != null) {
+            sizeB++;
+            cur = cur.next;
         }
-        curA = headA;
-        curB = headB;
-        // 让curA为最长链表的头，lenA为其长度
-        if (lenB > lenA) {
-            //1. swap (lenA, lenB);
-            int tmpLen = lenA;
-            lenA = lenB;
-            lenB = tmpLen;
-            //2. swap (curA, curB);
-            ListNode tmpNode = curA;
-            curA = curB;
-            curB = tmpNode;
+        if (sizeA < sizeB) {
+            //交换a b链表，让a 变成长的那个
+            ListNode tempL = a;
+            a = b;
+            b = tempL;
+
+            int temp = sizeA;
+            sizeA = sizeB;
+            sizeB = temp;
         }
-        // 求长度差
-        int gap = lenA - lenB;
-        // 让curA和curB在同一起点上（末尾位置对齐）
-        while (gap-- > 0) {
-            curA = curA.next;
-        }
-        // 遍历curA 和 curB，遇到相同则直接返回
-        while (curA != null) {
-            if (curA == curB) {
-                return curA;
+        //对齐两个链表
+        int gap = sizeA - sizeB;
+        while (a != null) {
+            if (gap == 0) {
+                break;
             }
-            curA = curA.next;
-            curB = curB.next;
+            gap--;
+            a = a.next;
+        }
+        while (a != null && b != null) {
+            if (a == b) {
+                return a;
+            }
+            a = a.next;
+            b = b.next;
         }
         return null;
     }
+
 }
