@@ -8,34 +8,44 @@ package com.github;
  */
 public class S21MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode aHead = l1;
-        ListNode bHead = l2;
-        ListNode listNode = new ListNode();
-        if (aHead == null && bHead != null) {
-            listNode.next = bHead;
-            return listNode;
+        ListNode node = new ListNode();
+        if (l1 == null && l2 != null) {
+            return l2;
         }
-        if (aHead != null && bHead == null) {
-            listNode.next = aHead;
-            return listNode;
+        if (l1 != null && l2 == null) {
+            return l1;
         }
-        if (aHead != null) {
-            if (aHead.val > bHead.val) {
-                listNode.val = bHead.val;
-                bHead = bHead.next;
-            } else if (aHead.val < bHead.val) {
-                listNode.val = aHead.val;
-                aHead = aHead.next;
+        if (l1 != null) {
+            if (l1.val < l2.val) {
+                node.val = l1.val;
+                node.next = mergeTwoLists(l1.next, l2);
+            } else if (l1.val > l2.val) {
+                node.val = l2.val;
+                node.next = mergeTwoLists(l1, l2.next);
             } else {
-                listNode.val = aHead.val;
-                ListNode next = new ListNode(aHead.val);
-                listNode.next = next;
-                listNode = next;
-                bHead = bHead.next;
-                aHead = aHead.next;
+                node.val = l1.val;
+                ListNode listNode = new ListNode(l1.val);
+                node.next = listNode;
+                listNode.next = mergeTwoLists(l1.next, l2.next);
             }
-            listNode.next = mergeTwoLists(aHead, bHead);
         }
-        return listNode;
+        if (l1 == null) {
+            return null;
+        }
+        return node;
+    }
+
+    public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        } else if (l2 == null) {
+            return l1;
+        } else if (l1.val < l2.val) {
+            l1.next = mergeTwoLists2(l1.next, l2);
+            return l1;
+        } else {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
+        }
     }
 }
