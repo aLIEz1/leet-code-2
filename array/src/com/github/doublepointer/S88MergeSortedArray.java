@@ -1,4 +1,4 @@
-package com.github;
+package com.github.doublepointer;
 
 /**
  * 合并两个有序数组
@@ -12,9 +12,11 @@ public class S88MergeSortedArray {
         int b = n - 1;
         int cur = m + n - 1;
         while (b >= 0 || a >= 0) {
+            //这是b对应的nums2到头了，弟弟，你太菜了
             if (b == -1) {
                 nums1[cur] = nums1[a];
                 a--;
+                //这是a对应的nums1到头了，弟弟，不要你了
             } else if (a == -1) {
                 nums1[cur] = nums2[b];
                 b--;
