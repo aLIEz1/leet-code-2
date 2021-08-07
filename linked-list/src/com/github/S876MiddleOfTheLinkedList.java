@@ -10,14 +10,10 @@ public class S876MiddleOfTheLinkedList {
     public ListNode middleNode(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        while (fast.next != null && fast.next.next != null) {
+        while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
         }
-        if (fast.next != null) {
-            return slow.next;
-        } else {
-            return slow;
-        }
+        return slow;
     }
 }

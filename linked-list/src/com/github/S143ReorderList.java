@@ -9,17 +9,27 @@ package com.github;
 public class S143ReorderList {
     public void reorderList(ListNode head) {
         ListNode normal = head;
-        ListNode reverse = head;
 
-        reverse = reverse(reverse);
-        while (normal != reverse && normal != null) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        ListNode reversed = reverse(slow);
+        while (reversed != null && normal != null) {
             ListNode normalNext = normal.next;
-            ListNode reverseNext = reverse.next;
-            normal.next = reverse;
-            reverse.next = normalNext;
+            ListNode reversedNext = reversed.next;
+            normal.next = reversed;
+            reversed.next = normalNext;
             normal = normalNext;
-            reverse = reverseNext;
-
+            reversed = reversedNext;
+        }
+        if (normal != null) {
+            normal.next = null;
+        }
+        if (reversed != null) {
+            reversed.next = null;
         }
     }
 
