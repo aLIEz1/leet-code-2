@@ -10,8 +10,8 @@ public class S41FirstMissingPositive {
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
         boolean flag = false;
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 1) {
+        for (int num : nums) {
+            if (num == 1) {
                 flag = true;
                 break;
             }

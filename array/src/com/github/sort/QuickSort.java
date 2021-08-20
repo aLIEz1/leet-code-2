@@ -1,4 +1,4 @@
-package com.github;
+package com.github.sort;
 
 import java.util.Arrays;
 
@@ -8,13 +8,17 @@ import java.util.Arrays;
  * @author ZhangFuQi
  * @date 2021/8/3 21:49
  */
-public class QuickSort {
-    public void sort(int[] array, int low, int high) {
+public class QuickSort implements ArraySort {
+    @Override
+    public void sort(int[] nums) {
+        quickSort(nums, 0, nums.length - 1);
+    }
+
+    public void quickSort(int[] array, int low, int high) {
         if (low < high) {
             int pi = partitionSwapped(array, low, high);
-
-            sort(array, low, pi - 1);
-            sort(array, pi + 1, high);
+            quickSort(array, low, pi - 1);
+            quickSort(array, pi + 1, high);
         }
     }
 
@@ -65,7 +69,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] ints = {3, 2, 3, 1, 2, 4, 5, 5, 6, 4};
-        new QuickSort().sort(ints, 0, ints.length - 1);
+        new QuickSort().sort(ints);
         System.out.println(Arrays.toString(ints));
     }
 }
